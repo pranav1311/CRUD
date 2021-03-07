@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>LIST OF ALL USERS </title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<style>
+.input[type=text] {
+  float: center;
+  padding: 6px;
+  margin-top: 8px;
+  margin-right: 16px;
+  border: groove;
+  font-size: 17px;
+}
+.td{
+text-align:center
+}
+</style>
+</head>
+<body style="text-align:center" >
+
+<h1 style="text-align:center"> USERS LIST </h1><br>
+<form action="/searchuser/" method="post" name="searchtext">
+<input type="text" id="searchtext" name="searchtext" placeholder="Search..">
+  <button type="submit" class="btn"> SEARCH </button><br>
+</form>
+  
+<br><br>
+<a href="/Newuser" class="btn btn-primary" > CREATE NEW USER</a>
+<br><br><br>
+<table class="table  table-bordered" style= "width:850px ; padding: 50px ;text-align:center ; margin-left: auto;
+  margin-right: auto;">
+<tr style="text-align:center"><th>ID</th><th >NAME</th><th>EMAIL</th><th colspan="2" style="text-align:left">ACTIONS</th>
+</tr>
+
+<tr th:each="user : ${users}">
+<td th:text=${user.id}></td>
+<td th:text=${user.name}></td>
+<td th:text=${user.email} ></td>
+<td><a th:href="@{'/delete/'+ ${user.id}}" class="btn btn-primary"> DELETE </a></td>
+<td><a th:href="@{'/update/'+ ${user.id}}" class="btn btn-primary"> UPDATE </a></td>
+</tr>
+</table>
+
+</body>
+</html>
